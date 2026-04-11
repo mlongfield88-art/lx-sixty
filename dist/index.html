@@ -199,6 +199,12 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
+                    <div class="form-group form-group--consent">
+                        <label class="consent-label">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <span>I consent to LX Sixty processing my personal data in accordance with the <a href="privacy.html">Privacy Policy</a>.</span>
+                        </label>
+                    </div>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
@@ -224,11 +230,26 @@
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-legal">
+                    <div class="footer-legal-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="privacy.html#cookies">Cookie Policy</a>
+                    </div>
                     <p>&copy; 2026 LX Sixty Group. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <p>We use essential cookies to ensure this website functions correctly. Third-party fonts (Google Fonts) may also set cookies. By continuing to use this site, you consent to our use of cookies in accordance with our <a href="privacy.html#cookies">Cookie Policy</a>.</p>
+            <div class="cookie-banner-actions">
+                <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept All</button>
+                <button class="cookie-btn cookie-btn--essential" id="cookieEssential">Essential Only</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/grid.js"></script>
     <script>
@@ -304,6 +325,25 @@
                 form.reset();
             }, 3000);
         });
+
+        // --- Cookie banner ---
+        (function () {
+            var banner = document.getElementById('cookieBanner');
+            if (!banner) return;
+            var consent = localStorage.getItem('lx60_cookie_consent');
+            if (consent) return;
+            banner.classList.add('cookie-banner--visible');
+
+            document.getElementById('cookieAccept').addEventListener('click', function () {
+                localStorage.setItem('lx60_cookie_consent', 'all');
+                banner.classList.remove('cookie-banner--visible');
+            });
+
+            document.getElementById('cookieEssential').addEventListener('click', function () {
+                localStorage.setItem('lx60_cookie_consent', 'essential');
+                banner.classList.remove('cookie-banner--visible');
+            });
+        })();
     </script>
 
 </body>
