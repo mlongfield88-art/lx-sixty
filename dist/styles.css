@@ -160,21 +160,123 @@ img { max-width: 100%; display: block; }
     text-align: center;
     background: var(--white);
     position: relative;
+    overflow: hidden;
+}
+
+/* Canvas background */
+.hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    animation: canvasFadeIn 1.5s ease 0.2s forwards;
+}
+
+@keyframes canvasFadeIn {
+    to { opacity: 1; }
 }
 
 .hero-content {
-    animation: heroFadeIn 1.2s ease forwards;
-}
-
-@keyframes heroFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    position: relative;
+    z-index: 1;
 }
 
 .hero-logo svg {
     width: 140px;
     height: auto;
     margin: 0 auto 32px;
+}
+
+/* Logo stroke draw animation */
+.logo-l-fill,
+.logo-x-fill {
+    opacity: 0;
+}
+
+.logo-l-stroke,
+.logo-x-stroke {
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.logo-l-stroke.draw {
+    stroke-dashoffset: 0 !important;
+}
+
+.logo-x-stroke.draw {
+    stroke-dashoffset: 0 !important;
+    transition-duration: 1s;
+}
+
+/* After strokes draw, fills fade in */
+.logo-l-stroke.draw ~ .logo-l-fill,
+.logo-l-fill {
+    animation: logoFillIn 0.5s ease 1.4s forwards;
+}
+
+.logo-x-stroke.draw ~ .logo-x-fill,
+.logo-x-fill {
+    animation: logoFillIn 0.5s ease 1.6s forwards;
+}
+
+@keyframes logoFillIn {
+    to { opacity: 1; }
+}
+
+/* Stroke fades out once fill is in */
+.logo-l-stroke {
+    animation: strokeFadeOut 0.4s ease 1.6s forwards;
+}
+
+.logo-x-stroke {
+    animation: strokeFadeOut 0.4s ease 1.8s forwards;
+}
+
+@keyframes strokeFadeOut {
+    to { opacity: 0; }
+}
+
+/* Staged hero reveals */
+.hero-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.hero-reveal--wordmark {
+    animation: heroReveal 0.6s ease 1.8s forwards;
+}
+
+.hero-reveal--descriptor {
+    animation: heroReveal 0.5s ease 2.0s forwards;
+}
+
+.hero-reveal--divider {
+    transform: scaleX(0);
+    animation: dividerReveal 0.5s ease 2.2s forwards;
+}
+
+.hero-reveal--tagline {
+    animation: heroReveal 0.6s ease 2.4s forwards;
+}
+
+.hero-reveal--scroll {
+    animation: heroReveal 0.5s ease 2.8s forwards;
+}
+
+@keyframes heroReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dividerReveal {
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
 }
 
 .hero-wordmark h1 {
@@ -193,6 +295,7 @@ img { max-width: 100%; display: block; }
     letter-spacing: 6px;
     color: var(--stone);
     text-transform: uppercase;
+    display: inline-block;
 }
 
 .hero-divider {
@@ -214,14 +317,25 @@ img { max-width: 100%; display: block; }
     position: absolute;
     bottom: 40px;
     left: 50%;
-    transform: translateX(-50%);
     color: var(--stone);
-    animation: scrollBounce 2s ease infinite;
+}
+
+/* Scroll indicator: needs translateX(-50%) for centering throughout */
+.hero-reveal--scroll {
+    transform: translateX(-50%) translateY(12px);
+    animation: scrollReveal 0.5s ease 2.8s forwards, scrollBounce 2s ease 3.3s infinite;
+}
+
+@keyframes scrollReveal {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 @keyframes scrollBounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
 }
 
 /* --- Sections --- */
