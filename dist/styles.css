@@ -192,32 +192,35 @@ img { max-width: 100%; display: block; }
 
 /* Logo stroke draw animation */
 .logo-l-fill,
-.logo-x-fill {
+.logo-diag-fill,
+.logo-accent-fill {
     opacity: 0;
 }
 
 .logo-l-stroke,
-.logo-x-stroke {
+.logo-accent-stroke {
     transition: stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.logo-l-stroke.draw {
+.logo-l-stroke.draw,
+.logo-accent-stroke.draw {
     stroke-dashoffset: 0 !important;
 }
 
-.logo-x-stroke.draw {
-    stroke-dashoffset: 0 !important;
+.logo-accent-stroke.draw {
     transition-duration: 1s;
 }
 
-/* After strokes draw, fills fade in */
-.logo-l-stroke.draw ~ .logo-l-fill,
+/* Fills fade in after strokes draw */
+.logo-diag-fill {
+    animation: logoFillIn 0.4s ease 1.3s forwards;
+}
+
 .logo-l-fill {
     animation: logoFillIn 0.5s ease 1.4s forwards;
 }
 
-.logo-x-stroke.draw ~ .logo-x-fill,
-.logo-x-fill {
+.logo-accent-fill {
     animation: logoFillIn 0.5s ease 1.6s forwards;
 }
 
@@ -225,12 +228,12 @@ img { max-width: 100%; display: block; }
     to { opacity: 1; }
 }
 
-/* Stroke fades out once fill is in */
+/* Strokes fade out once fills are in */
 .logo-l-stroke {
     animation: strokeFadeOut 0.4s ease 1.6s forwards;
 }
 
-.logo-x-stroke {
+.logo-accent-stroke {
     animation: strokeFadeOut 0.4s ease 1.8s forwards;
 }
 

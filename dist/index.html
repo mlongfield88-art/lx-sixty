@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231C1F22'/%3E%3Cpath d='M8 7v18h7v-2.5H11V7H8z' fill='%23F4F2EE'/%3E%3Cpath d='M14 11.5l5 6.75L14 25h3.2l3.4-4.58L24 25h3.2l-5-6.75L27.2 11.5H24l-3.4 4.58-3.4-4.58H14z' fill='%238A8580'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231C1F22'/%3E%3Cpolygon points='25,6 23,4 6,21 8,23' fill='%23F4F2EE'/%3E%3Cpath d='M6 4h6v17h12v4H6V4z' fill='%23F4F2EE'/%3E%3Cpolygon points='6,6 8,4 25,21 23,23' fill='%238A8580'/%3E%3C/svg%3E">
 </head>
 <body>
 
@@ -17,10 +17,11 @@
     <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="#hero" class="nav-logo">
-                <svg class="nav-logo-icon" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 4v32h14v-5H10V4H4z" fill="currentColor"/>
-                    <path d="M18 12l8.5 11L18 34h5.5l5.5-7.5L34.5 34H40l-8.5-11L40 12h-5.5L29 19.5 23.5 12H18z" fill="#8A8580"/>
-                    <text x="48" y="28" font-family="Inter, sans-serif" font-weight="600" font-size="14" letter-spacing="3" fill="currentColor">SIXTY</text>
+                <svg class="nav-logo-icon" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="58,5 55,2 8,35 11,38" fill="currentColor"/>
+                    <path d="M6 2h8v28h22v6H6V2z" fill="currentColor"/>
+                    <polygon points="8,5 11,2 58,35 55,38" fill="#8A8580"/>
+                    <text x="68" y="28" font-family="Inter, sans-serif" font-weight="600" font-size="14" letter-spacing="3" fill="currentColor">SIXTY</text>
                 </svg>
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -40,13 +41,16 @@
         <canvas id="grid-canvas" class="hero-canvas" aria-hidden="true"></canvas>
         <div class="hero-content">
             <div class="hero-logo" aria-hidden="true">
-                <svg viewBox="0 0 240 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Filled paths (fade in after stroke draws) -->
-                    <path class="logo-l-fill" d="M20 10v100h30v-12H36V10H20z" fill="#1C1F22"/>
-                    <path class="logo-x-fill" d="M55 30l20 27.5L55 85h12l14-18 14 18h12L87 57.5 107 30H95L81 48 67 30H55z" fill="#8A8580"/>
-                    <!-- Stroke paths (draw animation) -->
-                    <path class="logo-l-stroke" d="M20 10v100h30v-12H36V10H20z" fill="none" stroke="#1C1F22" stroke-width="1.5"/>
-                    <path class="logo-x-stroke" d="M55 30l20 27.5L55 85h12l14-18 14 18h12L87 57.5 107 30H95L81 48 67 30H55z" fill="none" stroke="#8A8580" stroke-width="1.5"/>
+                <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Layer 1: Charcoal X diagonal (behind L) -->
+                    <path class="logo-diag-fill" d="M180 16L172 4L26 104L34 116z" fill="#1C1F22"/>
+                    <!-- Layer 2: L shape (middle) -->
+                    <path class="logo-l-fill" d="M20 8h20v84h64v16H20V8z" fill="#1C1F22"/>
+                    <!-- Layer 3: Stone-grey accent diagonal (in front of L) -->
+                    <path class="logo-accent-fill" d="M26 16L34 4L180 104L172 116z" fill="#8A8580"/>
+                    <!-- Stroke paths for draw animation -->
+                    <path class="logo-l-stroke" d="M20 8h20v84h64v16H20V8z" fill="none" stroke="#1C1F22" stroke-width="1.5"/>
+                    <path class="logo-accent-stroke" d="M30 10L176 110" fill="none" stroke="#8A8580" stroke-width="14" stroke-linecap="square"/>
                 </svg>
             </div>
             <div class="hero-wordmark">
@@ -206,10 +210,11 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">
-                    <svg class="footer-logo" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 4v32h14v-5H10V4H4z" fill="currentColor"/>
-                        <path d="M18 12l8.5 11L18 34h5.5l5.5-7.5L34.5 34H40l-8.5-11L40 12h-5.5L29 19.5 23.5 12H18z" fill="#8A8580"/>
-                        <text x="48" y="28" font-family="Inter, sans-serif" font-weight="600" font-size="14" letter-spacing="3" fill="currentColor">SIXTY</text>
+                    <svg class="footer-logo" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="58,5 55,2 8,35 11,38" fill="currentColor"/>
+                        <path d="M6 2h8v28h22v6H6V2z" fill="currentColor"/>
+                        <polygon points="8,5 11,2 58,35 55,38" fill="#8A8580"/>
+                        <text x="68" y="28" font-family="Inter, sans-serif" font-weight="600" font-size="14" letter-spacing="3" fill="currentColor">SIXTY</text>
                     </svg>
                 </div>
                 <div class="footer-links">
@@ -229,20 +234,19 @@
     <script>
         // --- Logo draw animation ---
         (function () {
-            const lStroke = document.querySelector('.logo-l-stroke');
-            const xStroke = document.querySelector('.logo-x-stroke');
-            if (!lStroke || !xStroke) return;
+            var lStroke = document.querySelector('.logo-l-stroke');
+            var accentStroke = document.querySelector('.logo-accent-stroke');
+            if (!lStroke || !accentStroke) return;
 
-            [lStroke, xStroke].forEach(function (path) {
-                const len = path.getTotalLength();
+            [lStroke, accentStroke].forEach(function (path) {
+                var len = path.getTotalLength();
                 path.style.strokeDasharray = len;
                 path.style.strokeDashoffset = len;
             });
 
-            // Trigger draw after a brief pause
             requestAnimationFrame(function () {
                 lStroke.classList.add('draw');
-                setTimeout(function () { xStroke.classList.add('draw'); }, 400);
+                setTimeout(function () { accentStroke.classList.add('draw'); }, 400);
             });
         })();
 
