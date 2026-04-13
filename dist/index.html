@@ -322,6 +322,17 @@
             color: var(--cream);
         }
 
+        .cookie-btn--reject {
+            background: transparent;
+            color: var(--stone);
+            border: 1px solid var(--steel);
+        }
+
+        .cookie-btn--reject:hover {
+            border-color: var(--taupe);
+            color: var(--cream);
+        }
+
         /* --- Responsive --- */
         @media (max-width: 640px) {
             body { font-size: 16px; }
@@ -404,6 +415,7 @@
             <div class="cookie-banner-actions">
                 <button class="cookie-btn cookie-btn--accept" id="cookieAccept">Accept All</button>
                 <button class="cookie-btn cookie-btn--essential" id="cookieEssential">Essential Only</button>
+                <button class="cookie-btn cookie-btn--reject" id="cookieReject">Reject All</button>
             </div>
         </div>
     </div>
@@ -443,6 +455,11 @@
 
             document.getElementById('cookieEssential').addEventListener('click', function () {
                 localStorage.setItem('lx60_cookie_consent', 'essential');
+                banner.classList.remove('cookie-banner--visible');
+            });
+
+            document.getElementById('cookieReject').addEventListener('click', function () {
+                localStorage.setItem('lx60_cookie_consent', 'rejected');
                 banner.classList.remove('cookie-banner--visible');
             });
         })();
