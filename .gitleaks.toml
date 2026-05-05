@@ -4,10 +4,7 @@ title = "LX Sixty Group gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "Known-public values that gitleaks would otherwise flag"
-regexes = [
-  '''AIzaSyD05JCADypvwknCwtu05rfz30wD4pmFjYs''',
-]
+description = "Path exclusions only. No literal secrets in this file."
 paths = [
   '''node_modules/''',
   '''dist/lib/''',
