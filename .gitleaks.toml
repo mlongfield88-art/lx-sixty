@@ -1,0 +1,16 @@
+title = "LX Sixty Group gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known-public values that gitleaks would otherwise flag"
+regexes = [
+  '''AIzaSyD05JCADypvwknCwtu05rfz30wD4pmFjYs''',
+]
+paths = [
+  '''node_modules/''',
+  '''dist/lib/''',
+  '''.wrangler/''',
+  '''public/lib/''',
+]
