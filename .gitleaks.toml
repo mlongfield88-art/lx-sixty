@@ -3,6 +3,24 @@ title = "LX Sixty Group gitleaks config"
 [extend]
 useDefault = true
 
+# LX Sixty Group extension rules. Explicit AWS patterns not reliably caught
+# by the gitleaks v8 default ruleset in isolation test (2026-05-09, SEC-2026-016).
+
+[[rules]]
+id = "lxs-aws-access-key-id"
+description = "AWS Access Key ID. AKIA, ABIA, ACCA, or ASIA prefix plus 16 uppercase alphanumeric chars."
+regex = '''\b(AKIA|ABIA|ACCA|ASIA)[0-9A-Z]{16}\b'''
+tags = ["aws", "key-id"]
+keywords = ["AKIA", "ABIA", "ACCA", "ASIA"]
+
+[[rules]]
+id = "lxs-aws-secret-access-key"
+description = "AWS Secret Access Key. 40-char base64-like value on a line whose key name contains aws plus secret or access plus key."
+regex = '''(?i)aws[_\-\.\s]?(?:secret|access)[_\-\.\s]?(?:access[_\-\.\s]?)?key(?:[_\-\.\s]?id)?\s*[=:]\s*["']?([A-Za-z0-9+/=]{40})["']?'''
+secretGroup = 1
+tags = ["aws", "secret-key"]
+keywords = ["aws", "secret", "access", "key"]
+
 [allowlist]
 description = "Path exclusions only. No literal secrets in this file."
 paths = [
